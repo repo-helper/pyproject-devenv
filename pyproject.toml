@@ -1,34 +1,43 @@
 [build-system]
-requires = [ "setuptools>=40.6.0", "wheel>=0.34.2",]
-build-backend = "setuptools.build_meta"
+requires = [ "whey",]
+build-backend = "whey"
 
 [project]
 name = "pyproject-devenv"
 version = "0.0.0"
 description = "Create virtual environments using pyproject.toml metadata."
 readme = "README.rst"
-keywords = [ "virtualenv", "pyproject", "toml",]
+keywords = [ "pyproject", "toml", "virtualenv",]
 dynamic = [ "requires-python", "classifiers", "dependencies",]
 
 [[project.authors]]
-email = "dominic@davis-foster.co.uk"
 name = "Dominic Davis-Foster"
+email = "dominic@davis-foster.co.uk"
 
 
 [project.license]
 file = "LICENSE"
 
 [project.urls]
-Homepage = "https://github.com/domdfcoding/pyproject-devenv"
-"Issue Tracker" = "https://github.com/domdfcoding/pyproject-devenv/issues"
-"Source Code" = "https://github.com/domdfcoding/pyproject-devenv"
+Homepage = "https://github.com/repo-helper/pyproject-devenv"
+"Issue Tracker" = "https://github.com/repo-helper/pyproject-devenv/issues"
+"Source Code" = "https://github.com/repo-helper/pyproject-devenv"
 Documentation = "https://pyproject-devenv.readthedocs.io/en/latest"
 
 [project.scripts]
 pyproject-devenv = "pyproject_devenv.__main__:main"
+devenv = "pyproject_devenv.__main__:main"
 
 [tool.mkrecipe]
-conda-channels = [ "domdfcoding",]
+conda-channels = [ "repo-helper",]
 extras = "all"
+license-key = "MIT"
+package = "pyproject_devenv"
+
+[tool.whey]
+base-classifiers = []
+python-versions = [ "3.6", "3.7", "3.8", "3.9",]
+python-implementations = [ "CPython", "PyPy",]
+platforms = [ "Windows", "macOS", "Linux",]
 license-key = "MIT"
 package = "pyproject_devenv"

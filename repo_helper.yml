@@ -4,18 +4,21 @@ modname: 'pyproject-devenv'
 copyright_years: '2020-2021'
 author: 'Dominic Davis-Foster'
 email: 'dominic@davis-foster.co.uk'
-username: 'domdfcoding'
+username: 'repo-helper'
+assignee: 'domdfcoding'
 version: '0.0.0'
 license: 'MIT'
 short_desc: 'Create virtual environments using pyproject.toml metadata.'
 
 enable_conda: false
+use_whey: true
 
 sphinx_html_theme: furo
 standalone_contrib_guide: true
 
 console_scripts:
  - pyproject-devenv=pyproject_devenv.__main__:main
+ - devenv=pyproject_devenv.__main__:main
 
 keywords:
  - virtualenv
@@ -28,6 +31,11 @@ python_versions:
  - 3.8
  - 3.9
  - 3.10-dev
+ - pypy36
+ - pypy37
 
 extra_sphinx_extensions:
  - sphinx_click
+
+sphinx_conf_epilogue:
+ - nitpicky = True

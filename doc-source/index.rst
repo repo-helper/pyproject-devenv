@@ -130,15 +130,11 @@ Installation
 
 .. toctree::
 	:maxdepth: 3
-	:caption: API Reference
+	:caption: Documentation
 	:glob:
 
-	api/*
-
-.. toctree::
-	:maxdepth: 3
-	:caption: Contributing
-
+	usage
+	api
 	contributing
 	Source
 
@@ -148,6 +144,6 @@ Installation
 
 	View the :ref:`Function Index <genindex>` or browse the `Source Code <_modules/index.html>`__.
 
-	`Browse the GitHub Repository <https://github.com/domdfcoding/pyproject-devenv>`__
+	`Browse the GitHub Repository <https://github.com/repo-helper/pyproject-devenv>`__
 
 .. end links
