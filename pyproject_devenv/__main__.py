@@ -95,7 +95,7 @@ def main(
 		ret = mkdevenv(PathPlus.cwd(), dest, verbosity=verbose, upgrade=upgrade)
 
 		if ret:
-			sys.exit(ret)
+			sys.exit(ret)  # pragma: no cover
 		else:
 			click.echo(
 					Fore.GREEN("Successfully created development virtualenv."),

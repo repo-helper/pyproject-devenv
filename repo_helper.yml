@@ -12,7 +12,7 @@ short_desc: 'Create virtual environments using pyproject.toml metadata.'
 
 enable_conda: false
 use_whey: true
-
+min_coverage: 98
 sphinx_html_theme: furo
 standalone_contrib_guide: true
 

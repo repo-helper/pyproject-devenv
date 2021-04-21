@@ -50,6 +50,8 @@ __all__ = [
 		"ConfigTracebackHandler",
 		]
 
+_PP = TypeVar("_PP", bound=pyproject_parser.PyProject)
+
 
 class PEP621Parser(pyproject_parser.parsers.PEP621Parser):
 	"""
@@ -99,9 +101,6 @@ class PEP621Parser(pyproject_parser.parsers.PEP621Parser):
 		parsed_config = {"dynamic": dynamic_fields}
 		parsed_config.update(super().parse(config, set_defaults))
 		return cast(ProjectDict, parsed_config)
-
-
-_PP = TypeVar("_PP", bound=pyproject_parser.PyProject)
 
 
 class _DevenvConfig(pyproject_parser.PyProject):
@@ -169,5 +168,5 @@ class ConfigTracebackHandler(pyproject_parser.cli.ConfigTracebackHandler):
 	:exc:`dom_toml.parser.BadConfigError` and :exc:`~.BaseInstallError`.
 	"""  # noqa: D400
 
-	def handle_BaseInstallError(self, e: "BaseInstallError") -> bool:  # noqa: D102
+	def handle_BaseInstallError(self, e: "BaseInstallError") -> bool:  # noqa: D102  # pragma: no cover
 		raise abort(f"Error: {e}", colour=False)

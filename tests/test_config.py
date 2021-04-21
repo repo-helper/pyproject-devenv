@@ -35,6 +35,13 @@ def test_dynamic_optional_dependencies():
 		PEP621Parser().parse({"name": "foo", "dynamic": ["dependencies", "optional-dependencies"]})
 
 
+def test_no_project_table(tmp_pathplus: PathPlus):
+	(tmp_pathplus / "pyproject.toml").touch()
+
+	with pytest.raises(BadConfigError, match=r"The '\[project\]' table was not found in '.*pyproject.toml'"):
+		load_toml(tmp_pathplus / "pyproject.toml")
+
+
 def test_no_requirements_txt(tmp_pathplus: PathPlus):
 	dom_toml.dump({"project": {"name": "foo", "dynamic": ["dependencies"]}}, tmp_pathplus / "pyproject.toml")
 
