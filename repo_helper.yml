@@ -39,3 +39,9 @@ extra_sphinx_extensions:
 
 sphinx_conf_epilogue:
  - nitpicky = True
+
+classifiers:
+ - 'Development Status :: 4 - Beta'
+ - 'Environment :: Console'
+ - 'Intended Audience :: Developers'
+ - 'Topic :: System :: Archiving :: Packaging'
