@@ -91,10 +91,12 @@ def test_bad_config_cli(tmp_pathplus: PathPlus, config: Dict, match: str):
 						r"The '\[project.optional-dependencies\]' table may not be dynamic.",
 						id="dynamic_optional_dependencies",
 						),
-				pytest.param({"name": "foo", "dynamic": ["dependencies"]},
-								"'project.dependencies' was listed as a dynamic field "
-								"but no 'requirements.txt' file was found.",
-								id="no_requirements_txt"),
+				pytest.param(
+						{"name": "foo", "dynamic": ["dependencies"]},
+						"'project.dependencies' was listed as a dynamic field "
+						"but no 'requirements.txt' file was found.",
+						id="no_requirements_txt",
+						),
 				]
 		)
 def test_bad_config_cli_traceback(tmp_pathplus: PathPlus, config: Dict, match: str):
