@@ -52,6 +52,10 @@ __all__ = [
 
 
 class PEP621Parser(pyproject_parser.parsers.PEP621Parser):
+	"""
+	Parser for a reduced subset of the :pep:`621` metadata from ``pyproject.toml``.
+	"""
+
 	keys: List[str] = [
 			"name",
 			"dependencies",
@@ -101,10 +105,18 @@ _PP = TypeVar("_PP", bound=pyproject_parser.PyProject)
 
 
 class _DevenvConfig(pyproject_parser.PyProject):
+	"""
+	Internal 'pyproject.toml' parser using the PEP621Parser class defined above.
+	"""
+
 	project_table_parser = PEP621Parser()
 
 
 class ConfigDict(TypedDict):
+	"""
+	:class:`typing.TypedDict` representing the configuration returned by :func:`~.load_toml`.
+	"""
+
 	name: str
 	dependencies: List[ComparableRequirement]
 	optional_dependencies: Dict[str, List[ComparableRequirement]]
@@ -155,7 +167,7 @@ class ConfigTracebackHandler(pyproject_parser.cli.ConfigTracebackHandler):
 	"""
 	:class:`consolekit.tracebacks.TracebackHandler` which handles
 	:exc:`dom_toml.parser.BadConfigError` and :exc:`~.BaseInstallError`.
-	"""
+	"""  # noqa: D400
 
 	def handle_BaseInstallError(self, e: "BaseInstallError") -> bool:  # noqa: D102
 		raise abort(f"Error: {e}", colour=False)
