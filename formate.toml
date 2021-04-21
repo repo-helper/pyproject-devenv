@@ -47,6 +47,7 @@ known_third_party = [
     "pytest_randomly",
     "pytest_timeout",
     "shippinglabel",
+    "typing_extensions",
     "virtualenv",
 ]
 known_first_party = "pyproject_devenv"

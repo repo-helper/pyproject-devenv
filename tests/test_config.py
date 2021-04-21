@@ -10,7 +10,7 @@ from domdf_python_tools.paths import PathPlus, in_directory
 
 # this package
 from pyproject_devenv.__main__ import main
-from pyproject_devenv.config import DevenvConfig, PEP621Parser
+from pyproject_devenv.config import PEP621Parser, load_toml
 
 
 def test_dynamic_name():
@@ -42,7 +42,7 @@ def test_no_requirements_txt(tmp_pathplus: PathPlus):
 			BadConfigError,
 			match="'project.dependencies' was listed as a dynamic field but no 'requirements.txt' file was found."
 			):
-		DevenvConfig.load(tmp_pathplus / "pyproject.toml").read_dynamic_dependencies(tmp_pathplus)
+		load_toml(tmp_pathplus / "pyproject.toml")
 
 
 @pytest.mark.parametrize(
@@ -59,10 +59,12 @@ def test_no_requirements_txt(tmp_pathplus: PathPlus):
 						"The '[project.optional-dependencies]' table may not be dynamic.",
 						id="dynamic_optional_dependencies",
 						),
-				pytest.param({"name": "foo", "dynamic": ["dependencies"]},
-								"'project.dependencies' was listed as a dynamic field "
-								"but no 'requirements.txt' file was found.",
-								id="no_requirements_txt"),
+				pytest.param(
+						{"name": "foo", "dynamic": ["dependencies"]},
+						"'project.dependencies' was listed as a dynamic field "
+						"but no 'requirements.txt' file was found.",
+						id="no_requirements_txt",
+						),
 				]
 		)
 def test_bad_config_cli(tmp_pathplus: PathPlus, config: Dict, match: str):

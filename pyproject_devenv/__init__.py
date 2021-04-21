@@ -40,14 +40,13 @@ from domdf_python_tools.paths import PathPlus, traverse_to_file
 from domdf_python_tools.typing import PathLike
 from domdf_python_tools.words import word_join
 from packaging.requirements import Requirement
-from pyproject_parser.type_hints import ProjectDict
 from shippinglabel import read_pyvenv
 from virtualenv.run import session_via_cli  # type: ignore
 from virtualenv.run.session import Session  # type: ignore
 from virtualenv.seed.wheels import pip_wheel_env_run  # type: ignore
 
 # this package
-from pyproject_devenv.config import DevenvConfig, load_toml
+from pyproject_devenv.config import ConfigDict, load_toml
 
 __all__ = ["mkdevenv", "BaseInstallError", "InstallFromFileError", "InstallError"]
 
@@ -119,25 +118,20 @@ class _Devenv:
 			upgrade: bool = False,
 			):
 		self.project_dir: PathPlus = traverse_to_file(PathPlus(project_dir), "pyproject.toml")
-		self.config: DevenvConfig = load_toml(self.project_dir / "pyproject.toml")
+		self.config: ConfigDict = load_toml(self.project_dir / "pyproject.toml")
 		self.venv_dir = self.project_dir / venv_dir
 		self.verbosity: int = int(verbosity)
 		self.upgrade: bool = upgrade
 
-		if self.config.project is None:
-			raise BadConfigError(f"The '[project]' table was not found in 'pyproject.toml'")
-
-		self._project: ProjectDict = self.config.project
-
 		# TODO: config option
-		self.extras_to_install = sorted(self.config.project.get("optional-dependencies", {}).keys())
+		self.extras_to_install = sorted(self.config["optional_dependencies"])
 
 	def create(self) -> int:
 
 		args = [
 				str(self.venv_dir),
 				"--prompt",
-				f"({self._project['name']}) ",
+				f"({self.config['name']}) ",
 				"--seeder",
 				"pip",
 				"--download",
@@ -184,7 +178,7 @@ class _Devenv:
 
 		self.install_requirements(
 				of_session,
-				*self._project["dependencies"],
+				*self.config["dependencies"],
 				)
 
 	def install_extra_requirements(self, of_session):
@@ -199,7 +193,7 @@ class _Devenv:
 
 			self.install_requirements(
 					of_session,
-					*self._project["optional-dependencies"][extra],
+					*self.config["optional_dependencies"][extra],
 					)
 
 	def install_test_requirements(self, of_session):
@@ -223,12 +217,12 @@ class _Devenv:
 		:param of_session:
 		"""
 
-		if self.config.build_system is not None:
+		if self.config["build_dependencies"] is not None:
 			self.report_installing("build requirements")
 
 			self.install_requirements(
 					of_session,
-					*self.config.build_system["requires"],
+					*self.config["build_dependencies"],
 					)
 
 	def report_installing(self, what: str):

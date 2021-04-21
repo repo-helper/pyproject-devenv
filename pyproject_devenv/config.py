@@ -27,7 +27,7 @@ Read the ``pyproject-devenv`` config from ``pyproject.toml``.
 #
 
 # stdlib
-from typing import TYPE_CHECKING, Any, Callable, ClassVar, Dict, List, TypeVar, cast
+from typing import TYPE_CHECKING, Any, Callable, ClassVar, Dict, List, Optional, TypeVar, cast
 
 # 3rd party
 import pyproject_parser.cli
@@ -36,14 +36,15 @@ from dom_toml.parser import TOML_TYPES, BadConfigError
 from domdf_python_tools.paths import PathPlus
 from domdf_python_tools.typing import PathLike
 from pyproject_parser.type_hints import ProjectDict
-from shippinglabel.requirements import combine_requirements, read_requirements
+from shippinglabel.requirements import ComparableRequirement, combine_requirements, read_requirements
+from typing_extensions import TypedDict
 
 if TYPE_CHECKING:
 	# this package
 	from pyproject_devenv import BaseInstallError
 
 __all__ = [
-		"DevenvConfig",
+		"ConfigDict",
 		"PEP621Parser",
 		"load_toml",
 		"ConfigTracebackHandler",
@@ -99,45 +100,55 @@ class PEP621Parser(pyproject_parser.parsers.PEP621Parser):
 _PP = TypeVar("_PP", bound=pyproject_parser.PyProject)
 
 
-class DevenvConfig(pyproject_parser.PyProject):
+class _DevenvConfig(pyproject_parser.PyProject):
 	project_table_parser = PEP621Parser()
 
-	def read_dynamic_dependencies(self, project_dir: PathLike):
-		if self.project is None:
-			raise BadConfigError(f"The '[project]' table was not found in 'pyproject.toml'")
 
-		project_dir = PathPlus(project_dir)
-
-		dynamic = list(self.project["dynamic"])
-
-		if "dependencies" in dynamic:
-			if (project_dir / "requirements.txt").is_file():
-				dependencies = read_requirements(project_dir / "requirements.txt", include_invalid=True)[0]
-				self.project["dependencies"] = sorted(combine_requirements(dependencies))
-			else:
-				raise BadConfigError(
-						"'project.dependencies' was listed as a dynamic field "
-						"but no 'requirements.txt' file was found."
-						)
+class ConfigDict(TypedDict):
+	name: str
+	dependencies: List[ComparableRequirement]
+	optional_dependencies: Dict[str, List[ComparableRequirement]]
+	build_dependencies: Optional[List[ComparableRequirement]]
 
 
-def load_toml(filename: PathLike) -> DevenvConfig:  # TODO: TypedDict
+def load_toml(filename: PathLike) -> ConfigDict:
 	"""
-	Load the ``mkrecipe`` configuration mapping from the given TOML file.
+	Load the ``pyproject-devenv`` configuration mapping from the given TOML file.
 
 	:param filename:
 	"""
 
 	filename = PathPlus(filename)
 
-	devenv_config = DevenvConfig.load(filename, set_defaults=True)
+	devenv_config = _DevenvConfig.load(filename, set_defaults=True)
 
 	if devenv_config.project is None:
 		raise BadConfigError(f"The '[project]' table was not found in {filename.as_posix()!r}")
 
-	devenv_config.read_dynamic_dependencies(filename.parent)
+	dynamic = set(devenv_config.project["dynamic"])
+	project_dir = filename.parent
 
-	return devenv_config
+	if "dependencies" in dynamic:
+		if (project_dir / "requirements.txt").is_file():
+			dependencies = read_requirements(project_dir / "requirements.txt", include_invalid=True)[0]
+			devenv_config.project["dependencies"] = sorted(combine_requirements(dependencies))
+		else:
+			raise BadConfigError(
+					"'project.dependencies' was listed as a dynamic field "
+					"but no 'requirements.txt' file was found."
+					)
+
+	if devenv_config.build_system is None:
+		build_dependencies = None
+	else:
+		build_dependencies = devenv_config.build_system["requires"]
+
+	return {
+			"name": devenv_config.project["name"],
+			"dependencies": devenv_config.project["dependencies"],
+			"optional_dependencies": devenv_config.project["optional-dependencies"],
+			"build_dependencies": build_dependencies,
+			}
 
 
 class ConfigTracebackHandler(pyproject_parser.cli.ConfigTracebackHandler):
