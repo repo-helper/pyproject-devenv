@@ -117,14 +117,35 @@ class _Devenv:
 			verbosity: int = 1,
 			upgrade: bool = False,
 			):
-		self.project_dir: PathPlus = traverse_to_file(PathPlus(project_dir), "pyproject.toml")
-		self.config: ConfigDict = load_toml(self.project_dir / "pyproject.toml")
+		self.project_dir: PathPlus = self.determine_project_dir(project_dir)
+		self.config: ConfigDict = self.load_config()
 		self.venv_dir = self.project_dir / venv_dir
 		self.verbosity: int = int(verbosity)
 		self.upgrade: bool = upgrade
 
 		# TODO: config option
 		self.extras_to_install = sorted(self.config["optional_dependencies"])
+
+	@staticmethod
+	def determine_project_dir(project_dir: PathLike) -> PathPlus:
+		"""
+		Determine the project base directory.
+
+		Subclasses may override this method to customise the behaviour.
+
+		:param project_dir:
+		"""
+
+		return traverse_to_file(PathPlus(project_dir), "pyproject.toml")
+
+	def load_config(self) -> ConfigDict:
+		"""
+		Load the configuration.
+
+		Subclasses may override this method to customise the behaviour.
+		"""
+
+		return load_toml(self.project_dir / "pyproject.toml")
 
 	def create(self) -> int:
 
