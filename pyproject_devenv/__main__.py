@@ -61,10 +61,10 @@ def version_callback(ctx: click.Context, param: click.Option, value: int):  # no
 	ctx.exit()
 
 
-@verbose_option()
+@version_option(callback=version_callback)
 @traceback_option()
 @colour_option()
-@version_option(callback=version_callback)
+@verbose_option()
 @flag_option(
 		"-U",
 		"--upgrade",

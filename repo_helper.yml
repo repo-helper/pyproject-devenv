@@ -36,6 +36,7 @@ python_versions:
 
 extra_sphinx_extensions:
  - sphinx_click
+ - html_section
 
 sphinx_conf_epilogue:
  - nitpicky = True
