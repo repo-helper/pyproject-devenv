@@ -28,6 +28,7 @@ Create virtual environments using ``pyproject.toml`` metadata.
 
 # stdlib
 import os
+import pathlib
 import shutil
 from typing import Dict, Optional, Union
 
@@ -77,7 +78,11 @@ class InstallFromFileError(BaseInstallError):
 	"""
 
 	def __init__(self, filename: PathLike):
-		self.filename = str(filename)
+		if not isinstance(filename, pathlib.Path):
+			filename = PathPlus(filename)
+
+		self.filename = filename.as_posix()
+
 		super().__init__(f"Could not install from {self.filename!r}")
 
 

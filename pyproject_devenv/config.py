@@ -133,7 +133,7 @@ def load_toml(filename: PathLike) -> DevenvConfig:  # TODO: TypedDict
 	devenv_config = DevenvConfig.load(filename, set_defaults=True)
 
 	if devenv_config.project is None:
-		raise BadConfigError(f"The '[project]' table was not found in {str(filename)!r}")
+		raise BadConfigError(f"The '[project]' table was not found in {filename.as_posix()!r}")
 
 	devenv_config.read_dynamic_dependencies(filename.parent)
 
