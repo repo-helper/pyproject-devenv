@@ -71,46 +71,50 @@ Then run:
 
 	Successfully created development virtualenv.
 
-Output of ``pip list``::
+Output of ``pip list``:
 
-	Package          Version
-	---------------- ---------
-	argcomplete      1.12.3
-	asgiref          3.3.4
-	atomicwrites     1.4.0
-	attrs            20.3.0
-	certifi          2020.12.5
-	cffi             1.14.5
-	chardet          4.0.0
-	coverage         5.5
-	cryptography     3.4.7
-	Django           3.2
-	gidgethub        5.0.1
-	h11              0.12.0
-	httpcore         0.12.3
-	httpx            0.17.1
-	hypothesis       6.10.0
-	idna             2.10
-	more-itertools   8.7.0
-	nose             1.3.7
-	packaging        20.9
-	pip              21.0.1
-	pluggy           0.13.1
-	py               1.10.0
-	pycparser        2.20
-	PyJWT            2.0.1
-	pyparsing        2.4.7
-	pytest           4.6.11
-	pytest-cov       2.11.1
-	pytz             2021.1
-	requests         2.25.1
-	rfc3986          1.4.0
-	setuptools       54.2.0
-	six              1.15.0
-	sniffio          1.2.0
-	sortedcontainers 2.3.0
-	sqlparse         0.4.1
-	uritemplate      3.0.1
-	urllib3          1.26.4
-	wcwidth          0.2.5
-	wheel            0.36.2
+.. collapse:: Click to expand.
+
+	::
+
+		Package          Version
+		---------------- ---------
+		argcomplete      1.12.3
+		asgiref          3.3.4
+		atomicwrites     1.4.0
+		attrs            20.3.0
+		certifi          2020.12.5
+		cffi             1.14.5
+		chardet          4.0.0
+		coverage         5.5
+		cryptography     3.4.7
+		Django           3.2
+		gidgethub        5.0.1
+		h11              0.12.0
+		httpcore         0.12.3
+		httpx            0.17.1
+		hypothesis       6.10.0
+		idna             2.10
+		more-itertools   8.7.0
+		nose             1.3.7
+		packaging        20.9
+		pip              21.0.1
+		pluggy           0.13.1
+		py               1.10.0
+		pycparser        2.20
+		PyJWT            2.0.1
+		pyparsing        2.4.7
+		pytest           4.6.11
+		pytest-cov       2.11.1
+		pytz             2021.1
+		requests         2.25.1
+		rfc3986          1.4.0
+		setuptools       54.2.0
+		six              1.15.0
+		sniffio          1.2.0
+		sortedcontainers 2.3.0
+		sqlparse         0.4.1
+		uritemplate      3.0.1
+		urllib3          1.26.4
+		wcwidth          0.2.5
+		wheel            0.36.2
