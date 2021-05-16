@@ -136,13 +136,19 @@ Contents
 
 .. toctree::
 	:maxdepth: 3
-	:caption: Documentation
 	:glob:
 
 	usage
 	api
-	contributing
 	Source
+
+.. sidebar-links::
+	:caption: Links
+	:github:
+	:pypi: pyproject-devenv
+
+	Contributing Guide<https://contributing.repo-helper.uk>
+
 
 .. start links
 
@@ -150,6 +156,6 @@ Contents
 
 	View the :ref:`Function Index <genindex>` or browse the `Source Code <_modules/index.html>`__.
 
-	`Browse the GitHub Repository <https://github.com/repo-helper/pyproject-devenv>`__
+	:github:repo:`Browse the GitHub Repository <repo-helper/pyproject-devenv>`
 
 .. end links

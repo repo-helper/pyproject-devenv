@@ -14,7 +14,7 @@ enable_conda: false
 use_whey: true
 min_coverage: 98
 sphinx_html_theme: furo
-standalone_contrib_guide: true
+preserve_custom_theme: true
 
 console_scripts:
  - pyproject-devenv=pyproject_devenv.__main__:main
@@ -46,3 +46,6 @@ classifiers:
  - 'Environment :: Console'
  - 'Intended Audience :: Developers'
  - 'Topic :: System :: Archiving :: Packaging'
+
+exclude_files:
+ - contributing

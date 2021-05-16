@@ -44,10 +44,10 @@ if TYPE_CHECKING:
 	from pyproject_devenv import BaseInstallError
 
 __all__ = [
-		"ConfigDict",
-		"PEP621Parser",
 		"load_toml",
 		"ConfigTracebackHandler",
+		"ConfigDict",
+		"PEP621Parser",
 		]
 
 _PP = TypeVar("_PP", bound=pyproject_parser.PyProject)
@@ -58,6 +58,7 @@ class PEP621Parser(pyproject_parser.parsers.PEP621Parser):
 	Parser for a reduced subset of the :pep:`621` metadata from ``pyproject.toml``.
 	"""
 
+	#: The list of keys parsed from ``pyproject.toml``
 	keys: List[str] = [
 			"name",
 			"dependencies",
