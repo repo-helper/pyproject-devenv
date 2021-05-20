@@ -1,5 +1,5 @@
 git+https://github.com/domdfcoding/sphinx-click.git
-git+https://github.com/sphinx-toolbox/sphinx-notfound-page@css-files
+git+https://github.com/readthedocs/sphinx-notfound-page
 git+https://github.com/sphinx-toolbox/sphinx-toolbox-experimental
 autodocsumm>=0.2.0
 default-values>=0.4.2
