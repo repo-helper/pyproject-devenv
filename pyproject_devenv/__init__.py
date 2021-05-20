@@ -30,12 +30,11 @@ Create virtual environments using ``pyproject.toml`` metadata.
 import os
 import pathlib
 import shutil
-from typing import Dict, Optional, Union
+from typing import Dict, List, Optional, Union
 
 # 3rd party
 import click
 import virtualenv  # type: ignore
-from dom_toml.parser import BadConfigError
 from domdf_python_tools.paths import PathPlus, traverse_to_file
 from domdf_python_tools.typing import PathLike
 from domdf_python_tools.words import word_join
@@ -73,25 +72,35 @@ class BaseInstallError(RuntimeError):
 
 class InstallFromFileError(BaseInstallError):
 	"""
-	:exc:`Exception` to indicate an error occurred when installing packages from a requirements file..
+	:exc:`Exception` to indicate an error occurred when installing packages from a requirements file.
+
+	:param filename: The file listing the packages to install.
 	"""
 
 	def __init__(self, filename: PathLike):
 		if not isinstance(filename, pathlib.Path):
 			filename = PathPlus(filename)
 
-		self.filename = filename.as_posix()
+		self.filename: str = filename.as_posix()
+		"""
+		The file listing the packages to install.
+
+		.. latex:clearpage::
+		"""
 
 		super().__init__(f"Could not install from {self.filename!r}")
 
 
 class InstallError(BaseInstallError):
-	"""
+	r"""
 	:exc:`Exception` to indicate an error occurred when installing packages.
+
+	:param \*requirements: The requirements being installed.
 	"""
 
 	def __init__(self, *requirements: Union[str, Requirement]):
-		self.requirements = list(map(str, requirements))
+		#: The requirements being installed.
+		self.requirements: List[str] = list(map(str, requirements))
 
 		requirements_string = word_join(self.requirements, use_repr=True)
 		super().__init__(f"Could not install the given requirements: {requirements_string}")

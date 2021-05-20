@@ -36,7 +36,9 @@ python_versions:
 
 extra_sphinx_extensions:
  - sphinx_click
- - html_section
+ - pep_section
+ - sphinx_toolbox_experimental.html_section
+ - sphinx_toolbox_experimental.autosummary_widths
 
 sphinx_conf_epilogue:
  - nitpicky = True
