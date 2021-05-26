@@ -19,7 +19,7 @@ Any requirements listed in :pep621:`dependencies` or :pep621:`optional-dependenc
 which lists the project's build dependencies.
 Refer to :pep:`518` for more information on the ``[build-system]`` table.
 
-Any requirements listed :file:`{<pyproject_dir>}/tests/requirements.txt` are also installed if the file exists.
+Any requirements listed in :file:`{<pyproject_dir>}/tests/requirements.txt` are also installed if the file exists.
 
 .. TODO::
 

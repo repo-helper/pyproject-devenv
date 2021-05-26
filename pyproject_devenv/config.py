@@ -81,8 +81,8 @@ class PEP621Parser(pyproject_parser.parsers.PEP621Parser):
 
 		:param config:
 		:param set_defaults: If :py:obj:`True`, the values in
-			:attr:`dom_toml.parser.AbstractConfigParser.defaults` and
-			:attr:`dom_toml.parser.AbstractConfigParser.factories`
+			:attr:`self.defaults <dom_toml.parser.AbstractConfigParser.defaults>` and
+			:attr:`self.factories <dom_toml.parser.AbstractConfigParser.factories>`
 			will be set as defaults for the returned mapping.
 		"""
 
