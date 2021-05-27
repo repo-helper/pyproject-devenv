@@ -50,10 +50,10 @@ def test_mkdevenv(tmp_pathplus: PathPlus, capsys, verbosity: int):
 	# Check list of packages in virtualenv
 	venv_dir = tmp_pathplus / "venv"
 
-	if sys.platform == "win32":
-		version_dirs = [(venv_dir / "Lib")]
-	elif PYPY:
+	if PYPY:
 		version_dirs = [venv_dir]
+	elif sys.platform == "win32":
+		version_dirs = [(venv_dir / "Lib")]
 	else:
 		version_dirs = list((venv_dir / "lib").glob("py*"))
 
@@ -122,10 +122,10 @@ def test_mkdevenv_extras(tmp_pathplus: PathPlus, capsys):
 	# Check list of packages in virtualenv
 	venv_dir = tmp_pathplus / "venv"
 
-	if sys.platform == "win32":
-		version_dirs = [(venv_dir / "Lib")]
-	elif PYPY:
+	if PYPY:
 		version_dirs = [venv_dir]
+	elif sys.platform == "win32":
+		version_dirs = [(venv_dir / "Lib")]
 	else:
 		version_dirs = list((venv_dir / "lib").glob("py*"))
 
@@ -193,10 +193,10 @@ def test_mkdevenv_no_build_deps(tmp_pathplus: PathPlus, capsys):
 	# Check list of packages in virtualenv
 	venv_dir = tmp_pathplus / "venv"
 
-	if sys.platform == "win32":
-		version_dirs = [(venv_dir / "Lib")]
-	elif PYPY:
+	if PYPY:
 		version_dirs = [venv_dir]
+	elif sys.platform == "win32":
+		version_dirs = [(venv_dir / "Lib")]
 	else:
 		version_dirs = list((venv_dir / "lib").glob("py*"))
 
@@ -260,10 +260,10 @@ def test_mkdevenv_no_dynamic(tmp_pathplus: PathPlus, capsys):
 	# Check list of packages in virtualenv
 	venv_dir = tmp_pathplus / "venv"
 
-	if sys.platform == "win32":
-		version_dirs = [(venv_dir / "Lib")]
-	elif PYPY:
+	if PYPY:
 		version_dirs = [venv_dir]
+	elif sys.platform == "win32":
+		version_dirs = [(venv_dir / "Lib")]
 	else:
 		version_dirs = list((venv_dir / "lib").glob("py*"))
 
