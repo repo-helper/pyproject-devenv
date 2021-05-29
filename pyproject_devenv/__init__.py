@@ -204,12 +204,13 @@ class _Devenv:
 		:param of_session:
 		"""
 
-		self.report_installing("project requirements")
+		if self.config["dependencies"]:
+			self.report_installing("project requirements")
 
-		self.install_requirements(
-				of_session,
-				*self.config["dependencies"],
-				)
+			self.install_requirements(
+					of_session,
+					*self.config["dependencies"],
+					)
 
 	def install_extra_requirements(self, of_session):
 		"""

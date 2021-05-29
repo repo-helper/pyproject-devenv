@@ -224,6 +224,116 @@ def test_mkdevenv_no_build_deps(tmp_pathplus: PathPlus, capsys):
 	assert not strtobool(pyvenv_config["include-system-site-packages"])
 
 
+def test_mkdevenv_no_lib_deps(tmp_pathplus: PathPlus, capsys):
+
+	test_requirements = [
+			"pytest",
+			"hypothesis",
+			]
+
+	(tmp_pathplus / "pyproject.toml").write_lines([
+			"[build-system]",
+			'requires = ["setuptools", "wheel"]',
+			'',
+			"[project]",
+			"name = 'pyproject-devenv-demo'",
+			f"dependencies = []",
+			])
+
+	(tmp_pathplus / "tests").mkdir()
+	(tmp_pathplus / "tests/requirements.txt").write_lines(test_requirements)
+
+	assert mkdevenv(tmp_pathplus, tmp_pathplus / "venv", verbosity=1, upgrade=False) == 0
+
+	capout = capsys.readouterr()
+	assert not capout.err
+	assert "Installing library requirements" not in capout.out
+
+	# Check list of packages in virtualenv
+	venv_dir = tmp_pathplus / "venv"
+
+	if PYPY:
+		version_dirs = [venv_dir]
+	elif sys.platform == "win32":
+		version_dirs = [(venv_dir / "Lib")]
+	else:
+		version_dirs = list((venv_dir / "lib").glob("py*"))
+
+	for version_dir in version_dirs:
+		for package in test_requirements:
+			assert (version_dir / "site-packages" / package).is_dir()
+
+	assert len(version_dirs) == 1
+
+	pyvenv_config: Dict[str, str] = read_pyvenv(venv_dir)
+
+	assert "prompt" in pyvenv_config
+	assert pyvenv_config["prompt"] == "(pyproject-devenv-demo) "
+
+	assert "pyproject-devenv" in pyvenv_config
+	assert pyvenv_config["pyproject-devenv"] == __version__
+
+	assert "virtualenv" in pyvenv_config
+
+	assert "include-system-site-packages" in pyvenv_config
+	assert not strtobool(pyvenv_config["include-system-site-packages"])
+
+
+def test_mkdevenv_no_lib_deps_dynamic(tmp_pathplus: PathPlus, capsys):
+	test_requirements = [
+			"pytest",
+			"hypothesis",
+			]
+
+	(tmp_pathplus / "pyproject.toml").write_lines([
+			"[build-system]",
+			'requires = ["setuptools", "wheel"]',
+			'',
+			"[project]",
+			"name = 'pyproject-devenv-demo'",
+			"dynamic = ['dependencies']",
+			])
+	(tmp_pathplus / "requirements.txt").touch()
+
+	(tmp_pathplus / "tests").mkdir()
+	(tmp_pathplus / "tests/requirements.txt").write_lines(test_requirements)
+
+	assert mkdevenv(tmp_pathplus, tmp_pathplus / "venv", verbosity=1, upgrade=False) == 0
+
+	capout = capsys.readouterr()
+	assert not capout.err
+	assert "Installing library requirements" not in capout.out
+
+	# Check list of packages in virtualenv
+	venv_dir = tmp_pathplus / "venv"
+
+	if PYPY:
+		version_dirs = [venv_dir]
+	elif sys.platform == "win32":
+		version_dirs = [(venv_dir / "Lib")]
+	else:
+		version_dirs = list((venv_dir / "lib").glob("py*"))
+
+	for version_dir in version_dirs:
+		for package in test_requirements:
+			assert (version_dir / "site-packages" / package).is_dir()
+
+	assert len(version_dirs) == 1
+
+	pyvenv_config: Dict[str, str] = read_pyvenv(venv_dir)
+
+	assert "prompt" in pyvenv_config
+	assert pyvenv_config["prompt"] == "(pyproject-devenv-demo) "
+
+	assert "pyproject-devenv" in pyvenv_config
+	assert pyvenv_config["pyproject-devenv"] == __version__
+
+	assert "virtualenv" in pyvenv_config
+
+	assert "include-system-site-packages" in pyvenv_config
+	assert not strtobool(pyvenv_config["include-system-site-packages"])
+
+
 def test_mkdevenv_no_dynamic(tmp_pathplus: PathPlus, capsys):
 	lib_requirements = [
 			"click",
