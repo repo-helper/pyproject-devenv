@@ -9,7 +9,8 @@ Usage
 Configuration
 ---------------
 
-``pyproject-devenv`` is configured using the ``project`` table in ``pyproject.toml``, as defined in :pep:`621`.
+``pyproject-devenv`` is configured using the :pep621:`project table <table-name>` in ``pyproject.toml``,
+as defined in :pep:`621`.
 At a minimum, a value must be provided for :pep621:`name`,
 and :pep621:`dependencies` must have a value or be marked as :pep621:`dynamic`.
 A value can also be provided for :pep621:`optional-dependencies`, but this cannot be dynamic.
@@ -17,7 +18,7 @@ Any requirements listed in :pep621:`dependencies` or :pep621:`optional-dependenc
 
 ``pyproject-devenv`` will also install anything listed in ``build-system.requires``,
 which lists the project's build dependencies.
-Refer to :pep:`518` for more information on the ``[build-system]`` table.
+Refer to :pep:`518` for more information on the ``build-system`` table.
 
 Any requirements listed in :file:`{<pyproject_dir>}/tests/requirements.txt` are also installed if the file exists.
 
