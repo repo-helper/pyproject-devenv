@@ -32,7 +32,7 @@ import sys
 # 3rd party
 import click
 from consolekit import click_command
-from consolekit.options import colour_option, flag_option, verbose_option, version_option
+from consolekit.options import DescribedArgument, colour_option, flag_option, verbose_option, version_option
 from consolekit.terminal_colours import ColourTrilean, Fore, resolve_color_default
 from consolekit.tracebacks import handle_tracebacks, traceback_option
 from domdf_python_tools.paths import PathPlus
@@ -74,6 +74,8 @@ def version_callback(ctx: click.Context, param: click.Option, value: int):  # no
 		"dest",
 		type=click.STRING,
 		default="venv",
+		cls=DescribedArgument,
+		description="The directory to create the virtual environment in."
 		)
 @click_command()
 def main(
