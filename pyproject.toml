@@ -28,12 +28,6 @@ Documentation = "https://pyproject-devenv.readthedocs.io/en/latest"
 pyproject-devenv = "pyproject_devenv.__main__:main"
 devenv = "pyproject_devenv.__main__:main"
 
-[tool.mkrecipe]
-conda-channels = [ "repo-helper",]
-extras = "all"
-license-key = "MIT"
-package = "pyproject_devenv"
-
 [tool.whey]
 base-classifiers = [
     "Development Status :: 4 - Beta",
