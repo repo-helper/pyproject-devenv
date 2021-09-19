@@ -56,8 +56,8 @@ pyproject-devenv
 	:target: https://github.com/repo-helper/pyproject-devenv/actions?query=workflow%3A%22mypy%22
 	:alt: mypy status
 
-.. |requires| image:: https://requires.io/github/repo-helper/pyproject-devenv/requirements.svg?branch=master
-	:target: https://requires.io/github/repo-helper/pyproject-devenv/requirements/?branch=master
+.. |requires| image:: https://dependency-dash.herokuapp.com/github/repo-helper/pyproject-devenv/badge.svg
+	:target: https://dependency-dash.herokuapp.com/github/repo-helper/pyproject-devenv/
 	:alt: Requirements Status
 
 .. |coveralls| image:: https://img.shields.io/coveralls/github/repo-helper/pyproject-devenv/master?logo=coveralls
