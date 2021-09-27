@@ -169,7 +169,7 @@ def test_mkdevenv_verbose(tmp_pathplus: PathPlus, extra_args):
 	assert not strtobool(pyvenv_config["include-system-site-packages"])
 
 
-def test_version(tmp_pathplus, advanced_file_regression: AdvancedFileRegressionFixture):
+def test_version(tmp_pathplus):
 
 	with in_directory(tmp_pathplus):
 		runner = CliRunner()
@@ -179,7 +179,7 @@ def test_version(tmp_pathplus, advanced_file_regression: AdvancedFileRegressionF
 	assert result.stdout == f"pyproject-devenv version {__version__}\n"
 
 
-def test_version_version(tmp_pathplus, advanced_file_regression: AdvancedFileRegressionFixture):
+def test_version_version(tmp_pathplus):
 
 	with in_directory(tmp_pathplus):
 		runner = CliRunner()
