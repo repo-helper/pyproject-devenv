@@ -6,4 +6,4 @@ packaging>=20.9
 pyproject-parser>=0.2.0
 shippinglabel>=0.14.1
 typing-extensions>=3.7.4.3
-virtualenv>=20.4.3
+virtualenv>=20.10.0

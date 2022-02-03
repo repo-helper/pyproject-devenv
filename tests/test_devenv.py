@@ -70,7 +70,7 @@ def test_mkdevenv(tmp_pathplus: PathPlus, capsys, verbosity: int):
 	pyvenv_config: Dict[str, str] = read_pyvenv(venv_dir)
 
 	assert "prompt" in pyvenv_config
-	assert pyvenv_config["prompt"] == "(pyproject-devenv-demo) "
+	assert pyvenv_config["prompt"] == "pyproject-devenv-demo"
 
 	assert "pyproject-devenv" in pyvenv_config
 	assert pyvenv_config["pyproject-devenv"] == __version__
@@ -144,7 +144,7 @@ def test_mkdevenv_extras(tmp_pathplus: PathPlus, capsys):
 	pyvenv_config: Dict[str, str] = read_pyvenv(venv_dir)
 
 	assert "prompt" in pyvenv_config
-	assert pyvenv_config["prompt"] == "(pyproject-devenv-demo) "
+	assert pyvenv_config["prompt"] == "pyproject-devenv-demo"
 
 	assert "pyproject-devenv" in pyvenv_config
 	assert pyvenv_config["pyproject-devenv"] == __version__
@@ -213,7 +213,7 @@ def test_mkdevenv_no_build_deps(tmp_pathplus: PathPlus, capsys):
 	pyvenv_config: Dict[str, str] = read_pyvenv(venv_dir)
 
 	assert "prompt" in pyvenv_config
-	assert pyvenv_config["prompt"] == "(pyproject-devenv-demo) "
+	assert pyvenv_config["prompt"] == "pyproject-devenv-demo"
 
 	assert "pyproject-devenv" in pyvenv_config
 	assert pyvenv_config["pyproject-devenv"] == __version__
@@ -268,7 +268,7 @@ def test_mkdevenv_no_lib_deps(tmp_pathplus: PathPlus, capsys):
 	pyvenv_config: Dict[str, str] = read_pyvenv(venv_dir)
 
 	assert "prompt" in pyvenv_config
-	assert pyvenv_config["prompt"] == "(pyproject-devenv-demo) "
+	assert pyvenv_config["prompt"] == "pyproject-devenv-demo"
 
 	assert "pyproject-devenv" in pyvenv_config
 	assert pyvenv_config["pyproject-devenv"] == __version__
@@ -323,7 +323,7 @@ def test_mkdevenv_no_lib_deps_dynamic(tmp_pathplus: PathPlus, capsys):
 	pyvenv_config: Dict[str, str] = read_pyvenv(venv_dir)
 
 	assert "prompt" in pyvenv_config
-	assert pyvenv_config["prompt"] == "(pyproject-devenv-demo) "
+	assert pyvenv_config["prompt"] == "pyproject-devenv-demo"
 
 	assert "pyproject-devenv" in pyvenv_config
 	assert pyvenv_config["pyproject-devenv"] == __version__
@@ -390,7 +390,7 @@ def test_mkdevenv_no_dynamic(tmp_pathplus: PathPlus, capsys):
 	pyvenv_config: Dict[str, str] = read_pyvenv(venv_dir)
 
 	assert "prompt" in pyvenv_config
-	assert pyvenv_config["prompt"] == "(pyproject-devenv-demo) "
+	assert pyvenv_config["prompt"] == "pyproject-devenv-demo"
 
 	assert "pyproject-devenv" in pyvenv_config
 	assert pyvenv_config["pyproject-devenv"] == __version__

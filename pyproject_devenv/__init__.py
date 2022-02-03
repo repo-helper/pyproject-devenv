@@ -161,7 +161,7 @@ class _Devenv:
 		args = [
 				str(self.venv_dir),
 				"--prompt",
-				f"({self.config['name']}) ",
+				f"{self.config['name']}",
 				"--seeder",
 				"pip",
 				"--download",

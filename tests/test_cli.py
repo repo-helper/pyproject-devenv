@@ -74,7 +74,7 @@ def test_mkdevenv(tmp_pathplus: PathPlus):
 	pyvenv_config: Dict[str, str] = read_pyvenv(venv_dir)
 
 	assert "prompt" in pyvenv_config
-	assert pyvenv_config["prompt"] == "(pyproject-devenv-demo) "
+	assert pyvenv_config["prompt"] == "pyproject-devenv-demo"
 
 	assert "pyproject-devenv" in pyvenv_config
 	assert pyvenv_config["pyproject-devenv"] == __version__
@@ -158,7 +158,7 @@ def test_mkdevenv_verbose(tmp_pathplus: PathPlus, extra_args):
 	pyvenv_config: Dict[str, str] = read_pyvenv(venv_dir)
 
 	assert "prompt" in pyvenv_config
-	assert pyvenv_config["prompt"] == "(pyproject-devenv-demo) "
+	assert pyvenv_config["prompt"] == "pyproject-devenv-demo"
 
 	assert "pyproject-devenv" in pyvenv_config
 	assert pyvenv_config["pyproject-devenv"] == __version__
