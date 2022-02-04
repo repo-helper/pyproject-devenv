@@ -7,7 +7,7 @@ from typing import Dict
 import pytest
 from coincidence.regressions import AdvancedFileRegressionFixture
 from consolekit.testing import CliRunner, Result
-from domdf_python_tools.compat import PYPY
+from domdf_python_tools.compat import PYPY, PYPY38
 from domdf_python_tools.paths import PathPlus, in_directory
 from domdf_python_tools.utils import strtobool
 from shippinglabel import read_pyvenv
@@ -54,7 +54,7 @@ def test_mkdevenv(tmp_pathplus: PathPlus):
 	# Check list of packages in virtualenv
 	venv_dir = tmp_pathplus / "venv"
 
-	if PYPY:
+	if PYPY and not PYPY38:
 		version_dirs = [venv_dir]
 	elif sys.platform == "win32":
 		version_dirs = [(venv_dir / "Lib")]
@@ -138,7 +138,7 @@ def test_mkdevenv_verbose(tmp_pathplus: PathPlus, extra_args):
 	# Check list of packages in virtualenv
 	venv_dir = tmp_pathplus / "venv"
 
-	if PYPY:
+	if PYPY and not PYPY38:
 		version_dirs = [venv_dir]
 	elif sys.platform == "win32":
 		version_dirs = [(venv_dir / "Lib")]
