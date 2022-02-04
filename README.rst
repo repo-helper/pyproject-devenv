@@ -91,7 +91,7 @@ pyproject-devenv
 .. |language| image:: https://img.shields.io/github/languages/top/repo-helper/pyproject-devenv
 	:alt: GitHub top language
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/repo-helper/pyproject-devenv/v0.1.1
+.. |commits-since| image:: https://img.shields.io/github/commits-since/repo-helper/pyproject-devenv/v0.1.2
 	:target: https://github.com/repo-helper/pyproject-devenv/pulse
 	:alt: GitHub commits since tagged version
 
