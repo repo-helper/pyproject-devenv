@@ -5,7 +5,6 @@ from typing import Dict
 
 # 3rd party
 import pytest
-from coincidence.regressions import AdvancedFileRegressionFixture
 from consolekit.testing import CliRunner, Result
 from domdf_python_tools.compat import PYPY, PYPY38
 from domdf_python_tools.paths import PathPlus, in_directory
