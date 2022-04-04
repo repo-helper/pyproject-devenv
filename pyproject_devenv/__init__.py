@@ -55,7 +55,7 @@ __license__: str = "MIT License"
 __version__: str = "0.1.2"
 __email__: str = "dominic@davis-foster.co.uk"
 
-virtualenv_version = tuple(map(int, virtualenv.__version__.split('.')))
+virtualenv_version = tuple(map(int, virtualenv.__version__.split('.')[:3]))
 
 if virtualenv_version >= (20, 4):
 	_pip_wheel_env_run = pip_wheel_env_run
