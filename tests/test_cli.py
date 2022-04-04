@@ -53,7 +53,7 @@ def test_mkdevenv(tmp_pathplus: PathPlus):
 	# Check list of packages in virtualenv
 	venv_dir = tmp_pathplus / "venv"
 
-	if PYPY and not PYPY38:
+	if PYPY and not sys.version_info >= (3, 8):
 		version_dirs = [venv_dir]
 	elif sys.platform == "win32":
 		version_dirs = [(venv_dir / "Lib")]
@@ -137,7 +137,7 @@ def test_mkdevenv_verbose(tmp_pathplus: PathPlus, extra_args):
 	# Check list of packages in virtualenv
 	venv_dir = tmp_pathplus / "venv"
 
-	if PYPY and not PYPY38:
+	if PYPY and not sys.version_info >= (3, 8):
 		version_dirs = [venv_dir]
 	elif sys.platform == "win32":
 		version_dirs = [(venv_dir / "Lib")]

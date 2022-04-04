@@ -35,6 +35,7 @@ python_versions:
  - pypy36
  - pypy37
  - pypy38
+ - pypy39
 
 extra_sphinx_extensions:
  - sphinx_click
