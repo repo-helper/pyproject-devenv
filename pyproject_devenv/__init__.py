@@ -30,19 +30,19 @@ Create virtual environments using ``pyproject.toml`` metadata.
 import os
 import pathlib
 import shutil
-from typing import Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 # 3rd party
 import click
-import virtualenv  # type: ignore
+import virtualenv  # type: ignore[import]
 from domdf_python_tools.paths import PathPlus, traverse_to_file
 from domdf_python_tools.typing import PathLike
 from domdf_python_tools.words import word_join
 from packaging.requirements import Requirement
 from shippinglabel import read_pyvenv
-from virtualenv.run import session_via_cli  # type: ignore
-from virtualenv.run.session import Session  # type: ignore
-from virtualenv.seed.wheels import pip_wheel_env_run  # type: ignore
+from virtualenv.run import session_via_cli  # type: ignore[import]
+from virtualenv.run.session import Session  # type: ignore[import]
+from virtualenv.seed.wheels import pip_wheel_env_run  # type: ignore[import]
 
 # this package
 from pyproject_devenv.config import ConfigDict, load_toml
@@ -197,7 +197,7 @@ class _Devenv:
 
 		return 0
 
-	def install_project_requirements(self, of_session):
+	def install_project_requirements(self, of_session: Any) -> None:
 		"""
 		Install the project's requirements/dependencies.
 
@@ -212,7 +212,7 @@ class _Devenv:
 					*self.config["dependencies"],
 					)
 
-	def install_extra_requirements(self, of_session):
+	def install_extra_requirements(self, of_session: Any) -> None:
 		"""
 		Install the project's extra-requirements/optional-dependencies.
 
@@ -227,7 +227,7 @@ class _Devenv:
 					*self.config["optional_dependencies"][extra],
 					)
 
-	def install_test_requirements(self, of_session):
+	def install_test_requirements(self, of_session: Any) -> None:
 		"""
 		Install the project's test requirements.
 
@@ -241,7 +241,7 @@ class _Devenv:
 				requirements_file=self.project_dir / "tests" / "requirements.txt",
 				)
 
-	def install_build_requirements(self, of_session):
+	def install_build_requirements(self, of_session: Any) -> None:
 		"""
 		Install the project's build requirements.
 
@@ -256,7 +256,7 @@ class _Devenv:
 					*self.config["build_dependencies"],
 					)
 
-	def report_installing(self, what: str):
+	def report_installing(self, what: str) -> None:
 		"""
 		Report that a category of requirements is being installed.
 
@@ -288,7 +288,7 @@ class _Devenv:
 			session: Session,
 			*requirements: Union[str, Requirement],
 			requirements_file: Optional[PathLike] = None,
-			):
+			) -> None:
 		r"""
 		Install requirements into a virtualenv.
 

@@ -13,36 +13,36 @@ from pyproject_devenv.__main__ import main
 from pyproject_devenv.config import PEP621Parser, load_toml
 
 
-def test_dynamic_name():
+def test_dynamic_name() -> None:
 	with pytest.raises(BadConfigError, match="The 'project.name' field may not be dynamic."):
 		PEP621Parser().parse({"dynamic": ["name"]})
 
 
-def test_name_not_provided():
+def test_name_not_provided() -> None:
 	with pytest.raises(BadConfigError, match="The 'project.name' field must be provided."):
 		PEP621Parser().parse({})
 
 
-def test_dependencies_not_provided():
+def test_dependencies_not_provided() -> None:
 	with pytest.raises(
 			BadConfigError, match="The 'project.dependencies' field must be provided or marked as 'dynamic'."
 			):
 		PEP621Parser().parse({"name": "foo"})
 
 
-def test_dynamic_optional_dependencies():
+def test_dynamic_optional_dependencies() -> None:
 	with pytest.raises(BadConfigError, match=r"The '\[project.optional-dependencies\]' table may not be dynamic."):
 		PEP621Parser().parse({"name": "foo", "dynamic": ["dependencies", "optional-dependencies"]})
 
 
-def test_no_project_table(tmp_pathplus: PathPlus):
+def test_no_project_table(tmp_pathplus: PathPlus) -> None:
 	(tmp_pathplus / "pyproject.toml").touch()
 
 	with pytest.raises(BadConfigError, match=r"The '\[project\]' table was not found in '.*pyproject.toml'"):
 		load_toml(tmp_pathplus / "pyproject.toml")
 
 
-def test_no_requirements_txt(tmp_pathplus: PathPlus):
+def test_no_requirements_txt(tmp_pathplus: PathPlus) -> None:
 	dom_toml.dump({"project": {"name": "foo", "dynamic": ["dependencies"]}}, tmp_pathplus / "pyproject.toml")
 
 	with pytest.raises(
@@ -74,7 +74,7 @@ def test_no_requirements_txt(tmp_pathplus: PathPlus):
 						),
 				]
 		)
-def test_bad_config_cli(tmp_pathplus: PathPlus, config: Dict, match: str):
+def test_bad_config_cli(tmp_pathplus: PathPlus, config: Dict, match: str) -> None:
 	dom_toml.dump({"project": config}, tmp_pathplus / "pyproject.toml")
 
 	with in_directory(tmp_pathplus):
@@ -106,7 +106,7 @@ def test_bad_config_cli(tmp_pathplus: PathPlus, config: Dict, match: str):
 						),
 				]
 		)
-def test_bad_config_cli_traceback(tmp_pathplus: PathPlus, config: Dict, match: str):
+def test_bad_config_cli_traceback(tmp_pathplus: PathPlus, config: Dict, match: str) -> None:
 	dom_toml.dump({"project": config}, tmp_pathplus / "pyproject.toml")
 
 	with in_directory(tmp_pathplus):

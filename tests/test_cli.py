@@ -1,12 +1,12 @@
 # stdlib
 import re
 import sys
-from typing import Dict
+from typing import Dict, Tuple
 
 # 3rd party
 import pytest
 from consolekit.testing import CliRunner, Result
-from domdf_python_tools.compat import PYPY, PYPY38
+from domdf_python_tools.compat import PYPY
 from domdf_python_tools.paths import PathPlus, in_directory
 from domdf_python_tools.utils import strtobool
 from shippinglabel import read_pyvenv
@@ -16,7 +16,7 @@ from pyproject_devenv import __version__
 from pyproject_devenv.__main__ import main
 
 
-def test_mkdevenv(tmp_pathplus: PathPlus):
+def test_mkdevenv(tmp_pathplus: PathPlus) -> None:
 	lib_requirements = [
 			"click",
 			"flask",
@@ -96,7 +96,7 @@ def test_mkdevenv(tmp_pathplus: PathPlus):
 				pytest.param(("-vU", ), id="verbose short upgrade short"),
 				]
 		)
-def test_mkdevenv_verbose(tmp_pathplus: PathPlus, extra_args):
+def test_mkdevenv_verbose(tmp_pathplus: PathPlus, extra_args: Tuple[str, ...]) -> None:
 	lib_requirements = [
 			"click",
 			"flask",
@@ -168,7 +168,7 @@ def test_mkdevenv_verbose(tmp_pathplus: PathPlus, extra_args):
 	assert not strtobool(pyvenv_config["include-system-site-packages"])
 
 
-def test_version(tmp_pathplus):
+def test_version(tmp_pathplus: PathPlus) -> None:
 
 	with in_directory(tmp_pathplus):
 		runner = CliRunner()
@@ -178,7 +178,7 @@ def test_version(tmp_pathplus):
 	assert result.stdout == f"pyproject-devenv version {__version__}\n"
 
 
-def test_version_version(tmp_pathplus):
+def test_version_version(tmp_pathplus: PathPlus) -> None:
 
 	with in_directory(tmp_pathplus):
 		runner = CliRunner()

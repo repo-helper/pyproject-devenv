@@ -4,7 +4,7 @@ from typing import Dict
 
 # 3rd party
 import pytest
-from domdf_python_tools.compat import PYPY, PYPY38
+from domdf_python_tools.compat import PYPY
 from domdf_python_tools.paths import PathPlus
 from domdf_python_tools.utils import strtobool
 from shippinglabel import read_pyvenv
@@ -14,7 +14,7 @@ from pyproject_devenv import __version__, mkdevenv
 
 
 @pytest.mark.parametrize("verbosity", [0, 1, 2])
-def test_mkdevenv(tmp_pathplus: PathPlus, capsys, verbosity: int):
+def test_mkdevenv(tmp_pathplus: PathPlus, capsys, verbosity: int) -> None:
 	lib_requirements = [
 			"click",
 			"flask",
@@ -81,7 +81,7 @@ def test_mkdevenv(tmp_pathplus: PathPlus, capsys, verbosity: int):
 	assert not strtobool(pyvenv_config["include-system-site-packages"])
 
 
-def test_mkdevenv_extras(tmp_pathplus: PathPlus, capsys):
+def test_mkdevenv_extras(tmp_pathplus: PathPlus, capsys) -> None:
 	lib_requirements = [
 			"click",
 			"flask",
@@ -155,7 +155,7 @@ def test_mkdevenv_extras(tmp_pathplus: PathPlus, capsys):
 	assert not strtobool(pyvenv_config["include-system-site-packages"])
 
 
-def test_mkdevenv_no_build_deps(tmp_pathplus: PathPlus, capsys):
+def test_mkdevenv_no_build_deps(tmp_pathplus: PathPlus, capsys) -> None:
 	lib_requirements = [
 			"click",
 			"flask",
@@ -224,7 +224,7 @@ def test_mkdevenv_no_build_deps(tmp_pathplus: PathPlus, capsys):
 	assert not strtobool(pyvenv_config["include-system-site-packages"])
 
 
-def test_mkdevenv_no_lib_deps(tmp_pathplus: PathPlus, capsys):
+def test_mkdevenv_no_lib_deps(tmp_pathplus: PathPlus, capsys) -> None:
 
 	test_requirements = [
 			"pytest",
@@ -279,7 +279,7 @@ def test_mkdevenv_no_lib_deps(tmp_pathplus: PathPlus, capsys):
 	assert not strtobool(pyvenv_config["include-system-site-packages"])
 
 
-def test_mkdevenv_no_lib_deps_dynamic(tmp_pathplus: PathPlus, capsys):
+def test_mkdevenv_no_lib_deps_dynamic(tmp_pathplus: PathPlus, capsys) -> None:
 	test_requirements = [
 			"pytest",
 			"hypothesis",
@@ -334,7 +334,7 @@ def test_mkdevenv_no_lib_deps_dynamic(tmp_pathplus: PathPlus, capsys):
 	assert not strtobool(pyvenv_config["include-system-site-packages"])
 
 
-def test_mkdevenv_no_dynamic(tmp_pathplus: PathPlus, capsys):
+def test_mkdevenv_no_dynamic(tmp_pathplus: PathPlus, capsys) -> None:
 	lib_requirements = [
 			"click",
 			"flask",

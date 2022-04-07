@@ -8,7 +8,7 @@ from shippinglabel.requirements import ComparableRequirement
 from pyproject_devenv import InstallError, InstallFromFileError
 
 
-def test_InstallFromFileError():
+def test_InstallFromFileError() -> None:
 	with pytest.raises(InstallFromFileError, match="Could not install from 'requirements.txt'"):
 		raise InstallFromFileError("requirements.txt")
 
@@ -19,7 +19,7 @@ def test_InstallFromFileError():
 		raise InstallFromFileError(PathPlus("tests") / "requirements.txt")
 
 
-def test_InstallError():
+def test_InstallError() -> None:
 	with pytest.raises(
 			InstallError,
 			match="Could not install the given requirements: 'pytest', 'flake8', 'black' and 'pip'",
