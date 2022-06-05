@@ -30,7 +30,7 @@ Create virtual environments using ``pyproject.toml`` metadata.
 import os
 import pathlib
 import shutil
-from typing import Any, Dict, List, Optional, Union
+from typing import Dict, List, Optional, Union
 
 # 3rd party
 import click
@@ -60,7 +60,7 @@ virtualenv_version = tuple(map(int, virtualenv.__version__.split('.')[:3]))
 if virtualenv_version >= (20, 4):
 	_pip_wheel_env_run = pip_wheel_env_run
 
-	def pip_wheel_env_run(search_dirs, app_data):
+	def pip_wheel_env_run(search_dirs, app_data):  # noqa: MAN001,MAN002
 		return _pip_wheel_env_run(search_dirs, app_data, os.environ)
 
 
@@ -197,7 +197,7 @@ class _Devenv:
 
 		return 0
 
-	def install_project_requirements(self, of_session: Any) -> None:
+	def install_project_requirements(self, of_session: Session) -> None:
 		"""
 		Install the project's requirements/dependencies.
 
@@ -212,7 +212,7 @@ class _Devenv:
 					*self.config["dependencies"],
 					)
 
-	def install_extra_requirements(self, of_session: Any) -> None:
+	def install_extra_requirements(self, of_session: Session) -> None:
 		"""
 		Install the project's extra-requirements/optional-dependencies.
 
@@ -227,7 +227,7 @@ class _Devenv:
 					*self.config["optional_dependencies"][extra],
 					)
 
-	def install_test_requirements(self, of_session: Any) -> None:
+	def install_test_requirements(self, of_session: Session) -> None:
 		"""
 		Install the project's test requirements.
 
@@ -241,7 +241,7 @@ class _Devenv:
 				requirements_file=self.project_dir / "tests" / "requirements.txt",
 				)
 
-	def install_build_requirements(self, of_session: Any) -> None:
+	def install_build_requirements(self, of_session: Session) -> None:
 		"""
 		Install the project's build requirements.
 
