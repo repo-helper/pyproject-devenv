@@ -38,7 +38,7 @@ from consolekit.tracebacks import handle_tracebacks, traceback_option
 from domdf_python_tools.paths import PathPlus
 from domdf_python_tools.typing import PathLike
 
-__all__ = ["main", "version_callback"]
+__all__ = ("main", "version_callback")
 
 
 def version_callback(ctx: click.Context, param: click.Option, value: int) -> None:  # noqa: D103

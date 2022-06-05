@@ -47,7 +47,7 @@ from virtualenv.seed.wheels import pip_wheel_env_run  # type: ignore[import]
 # this package
 from pyproject_devenv.config import ConfigDict, load_toml
 
-__all__ = ["mkdevenv", "BaseInstallError", "InstallFromFileError", "InstallError"]
+__all__ = ("mkdevenv", "BaseInstallError", "InstallFromFileError", "InstallError")
 
 __author__: str = "Dominic Davis-Foster"
 __copyright__: str = "2020-2021 Dominic Davis-Foster"

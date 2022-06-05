@@ -43,12 +43,12 @@ if TYPE_CHECKING:
 	# this package
 	from pyproject_devenv import BaseInstallError
 
-__all__ = [
+__all__ = (
 		"load_toml",
 		"ConfigTracebackHandler",
 		"ConfigDict",
 		"PEP621Parser",
-		]
+		)
 
 _PP = TypeVar("_PP", bound=pyproject_parser.PyProject)
 
