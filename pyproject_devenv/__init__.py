@@ -296,7 +296,7 @@ class _Devenv:
 		:param \*requirements: The requirements to install.
 		:param requirements_file: The file to install the requirements from, with ``pip install -r <filename>``.
 
-		``*requirements`` and ``requirements_file`` are mutually exclusive.
+		``\*requirements`` and ``requirements_file`` are mutually exclusive.
 		"""
 
 		if requirements and requirements_file:
