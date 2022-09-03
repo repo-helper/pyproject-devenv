@@ -58,8 +58,8 @@ pyproject-devenv
 		:workflow: mypy
 		:alt: mypy status
 
-	.. |requires| image:: https://dependency-dash.herokuapp.com/github/repo-helper/pyproject-devenv/badge.svg
-		:target: https://dependency-dash.herokuapp.com/github/repo-helper/pyproject-devenv/
+	.. |requires| image:: https://dependency-dash.repo-helper.uk/github/repo-helper/pyproject-devenv/badge.svg
+		:target: https://dependency-dash.repo-helper.uk/github/repo-helper/pyproject-devenv/
 		:alt: Requirements Status
 
 	.. |coveralls| coveralls-shield::
