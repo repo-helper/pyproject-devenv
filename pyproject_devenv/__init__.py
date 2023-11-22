@@ -343,10 +343,13 @@ class _Devenv:
 		pyvenv_config: Dict[str, str] = read_pyvenv(self.venv_dir)
 		pyvenv_config["pyproject-devenv"] = __version__
 
+		lf = '\n'
+		lfht = "\n\t"
+
 		with (self.venv_dir / "pyvenv.cfg").open('w') as fp:
 			for key, value in pyvenv_config.items():
-				value = f" = " + str(value).replace('\n', '\n\t')
-				fp.write(f"{key}{value}\n")
+				value = str(value)
+				fp.write(f"{key} = {value.replace(lf, lfht)}\n")
 
 
 def mkdevenv(
