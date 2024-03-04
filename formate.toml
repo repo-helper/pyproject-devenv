@@ -50,4 +50,4 @@ known_third_party = [
     "typing_extensions",
     "virtualenv",
 ]
-known_first_party = "pyproject_devenv"
+known_first_party = [ "pyproject_devenv",]
