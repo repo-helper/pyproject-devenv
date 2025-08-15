@@ -28,6 +28,7 @@ Create virtual environments using ``pyproject.toml`` metadata.
 
 # stdlib
 import sys
+from typing import Optional
 
 # 3rd party
 import click
@@ -70,6 +71,10 @@ def version_callback(ctx: click.Context, param: click.Option, value: int) -> Non
 		"--upgrade",
 		help="Upgrade all specified packages to the newest available version.",
 		)
+@click.option(
+		"--python",
+		help="Path to the Python interpreter to use (e.g. a version of CPython, PyPy, RustPython, GraalPython)"
+		)
 @click.argument(
 		"dest",
 		type=click.STRING,
@@ -84,6 +89,7 @@ def main(
 		colour: ColourTrilean = None,
 		show_traceback: bool = False,
 		upgrade: bool = False,
+		python: Optional[str] = None
 		) -> None:
 	"""
 	Create virtual environments using pyproject.toml metadata.
@@ -94,7 +100,7 @@ def main(
 	from pyproject_devenv.config import ConfigTracebackHandler
 
 	with handle_tracebacks(show_traceback, ConfigTracebackHandler):
-		ret = mkdevenv(PathPlus.cwd(), dest, verbosity=verbose, upgrade=upgrade)
+		ret = mkdevenv(PathPlus.cwd(), dest, verbosity=verbose, upgrade=upgrade, python=python)
 
 		if ret:
 			sys.exit(ret)  # pragma: no cover

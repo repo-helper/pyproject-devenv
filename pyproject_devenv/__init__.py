@@ -116,6 +116,7 @@ class _Devenv:
 	:param venv_dir: The directory to create the devenv in, relative to ``repo_dir``.
 	:param verbosity: The verbosity of the function. ``0`` = quiet, ``2`` = very verbose.
 	:param upgrade: Whether to upgrade all specified packages to the newest available version.
+	:param python: Path to the Python interpreter to use (e.g. a version of CPython, PyPy, RustPython, GraalPython).
 	"""
 
 	def __init__(
@@ -125,12 +126,14 @@ class _Devenv:
 			*,
 			verbosity: int = 1,
 			upgrade: bool = False,
+			python: Optional[str] = None
 			):
 		self.project_dir: PathPlus = self.determine_project_dir(project_dir)
 		self.config: ConfigDict = self.load_config()
 		self.venv_dir = self.project_dir / venv_dir
 		self.verbosity: int = int(verbosity)
 		self.upgrade: bool = upgrade
+		self.python: Optional[str] = python
 
 		# TODO: config option
 		self.extras_to_install = sorted(self.config["optional_dependencies"])
@@ -171,6 +174,10 @@ class _Devenv:
 			args.append("--verbose")
 		if self.verbosity >= 2:
 			args.append("--verbose")
+		
+		if self.python:
+			args.append("--python")
+			args.append(self.python)
 
 		of_session = session_via_cli(args)
 
@@ -358,6 +365,7 @@ def mkdevenv(
 		*,
 		verbosity: int = 1,
 		upgrade: bool = False,
+		python: Optional[str] = None
 		) -> int:
 	"""
 	Create a "devenv".
@@ -366,6 +374,11 @@ def mkdevenv(
 	:param venv_dir: The directory to create the devenv in, relative to ``repo_dir``.
 	:param verbosity: The verbosity of the function. ``0`` = quiet, ``2`` = very verbose.
 	:param upgrade: Whether to upgrade all specified packages to the newest available version.
+	:param python: Path to the Python interpreter to use (e.g. a version of CPython, PyPy, RustPython, GraalPython).
+
+	:rtype:
+
+	.. versionchanged:: 0.2.0  Added ``python`` keyword argument.
 	"""
 
-	return _Devenv(project_dir, venv_dir, verbosity=verbosity, upgrade=upgrade).create()
+	return _Devenv(project_dir, venv_dir, verbosity=verbosity, upgrade=upgrade, python=python).create()
