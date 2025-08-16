@@ -174,7 +174,7 @@ class _Devenv:
 			args.append("--verbose")
 		if self.verbosity >= 2:
 			args.append("--verbose")
-		
+
 		if self.python:
 			args.append("--python")
 			args.append(self.python)
