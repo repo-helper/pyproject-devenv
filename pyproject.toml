@@ -4,7 +4,7 @@ build-backend = "whey"
 
 [project]
 name = "pyproject-devenv"
-version = "0.1.4"
+version = "0.2.0"
 description = "Create virtual environments using pyproject.toml metadata."
 readme = "README.rst"
 keywords = [ "pyproject", "toml", "virtualenv",]
