@@ -34,15 +34,15 @@ from typing import Dict, List, Optional, Union
 
 # 3rd party
 import click
-import virtualenv  # type: ignore[import]
+import virtualenv  # type: ignore[import-untyped]
 from domdf_python_tools.paths import PathPlus, traverse_to_file
 from domdf_python_tools.typing import PathLike
 from domdf_python_tools.words import word_join
 from packaging.requirements import Requirement
 from shippinglabel import read_pyvenv
-from virtualenv.run import session_via_cli  # type: ignore[import]
-from virtualenv.run.session import Session  # type: ignore[import]
-from virtualenv.seed.wheels import pip_wheel_env_run  # type: ignore[import]
+from virtualenv.run import session_via_cli  # type: ignore[import-untyped]
+from virtualenv.run.session import Session  # type: ignore[import-untyped]
+from virtualenv.seed.wheels import pip_wheel_env_run  # type: ignore[import-untyped]
 
 # this package
 from pyproject_devenv.config import ConfigDict, load_toml
