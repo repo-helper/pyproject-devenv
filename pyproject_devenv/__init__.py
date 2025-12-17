@@ -227,12 +227,12 @@ class _Devenv:
 		"""
 
 		for extra in self.extras_to_install:
-			self.report_installing(f"extra {extra!r}")
+			extra_requirements = self.config["optional_dependencies"][extra]
+			if not extra_requirements:
+				continue
 
-			self.install_requirements(
-					of_session,
-					*self.config["optional_dependencies"][extra],
-					)
+			self.report_installing(f"extra {extra!r}")
+			self.install_requirements(of_session, *extra_requirements)
 
 	def install_test_requirements(self, of_session: Session) -> None:
 		"""
