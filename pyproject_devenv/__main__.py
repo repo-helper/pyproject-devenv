@@ -83,7 +83,7 @@ def version_callback(ctx: click.Context, param: click.Option, value: int) -> Non
 		description="The directory to create the virtual environment in."
 		)
 @click_command()
-def main(
+def main(  # noqa: PRM002
 		dest: PathLike = "venv",
 		verbose: int = 0,
 		colour: ColourTrilean = None,
