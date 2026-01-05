@@ -99,7 +99,7 @@ pyproject-devenv
 	:target: https://github.com/repo-helper/pyproject-devenv/commit/master
 	:alt: GitHub last commit
 
-.. |maintained| image:: https://img.shields.io/maintenance/yes/2025
+.. |maintained| image:: https://img.shields.io/maintenance/yes/2026
 	:alt: Maintenance
 
 .. |pypi-downloads| image:: https://img.shields.io/pypi/dm/pyproject-devenv
