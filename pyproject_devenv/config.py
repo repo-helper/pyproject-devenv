@@ -145,10 +145,8 @@ def load_toml(filename: PathLike) -> ConfigDict:
 			dependencies = read_requirements(project_dir / "requirements.txt", include_invalid=True)[0]
 			devenv_config.project["dependencies"] = sorted(combine_requirements(dependencies))
 		else:
-			raise BadConfigError(
-					"'project.dependencies' was listed as a dynamic field "
-					"but no 'requirements.txt' file was found."
-					)
+			msg = "'project.dependencies' was listed as a dynamic field but no 'requirements.txt' file was found."
+			raise BadConfigError(msg)
 
 	if devenv_config.build_system is None:
 		build_dependencies = None

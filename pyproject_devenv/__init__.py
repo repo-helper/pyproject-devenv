@@ -126,7 +126,7 @@ class _Devenv:
 			*,
 			verbosity: int = 1,
 			upgrade: bool = False,
-			python: Optional[str] = None
+			python: Optional[str] = None,
 			):
 		self.project_dir: PathPlus = self.determine_project_dir(project_dir)
 		self.config: ConfigDict = self.load_config()
@@ -365,7 +365,7 @@ def mkdevenv(
 		*,
 		verbosity: int = 1,
 		upgrade: bool = False,
-		python: Optional[str] = None
+		python: Optional[str] = None,
 		) -> int:
 	"""
 	Create a "devenv".

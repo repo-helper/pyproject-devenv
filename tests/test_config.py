@@ -25,7 +25,8 @@ def test_name_not_provided() -> None:
 
 def test_dependencies_not_provided() -> None:
 	with pytest.raises(
-			BadConfigError, match="The 'project.dependencies' field must be provided or marked as 'dynamic'."
+			BadConfigError,
+			match="The 'project.dependencies' field must be provided or marked as 'dynamic'.",
 			):
 		PEP621Parser().parse({"name": "foo"})
 
@@ -47,7 +48,7 @@ def test_no_requirements_txt(tmp_pathplus: PathPlus) -> None:
 
 	with pytest.raises(
 			BadConfigError,
-			match="'project.dependencies' was listed as a dynamic field but no 'requirements.txt' file was found."
+			match="'project.dependencies' was listed as a dynamic field but no 'requirements.txt' file was found.",
 			):
 		load_toml(tmp_pathplus / "pyproject.toml")
 

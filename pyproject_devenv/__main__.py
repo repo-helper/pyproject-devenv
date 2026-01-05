@@ -73,23 +73,23 @@ def version_callback(ctx: click.Context, param: click.Option, value: int) -> Non
 		)
 @click.option(
 		"--python",
-		help="Path to the Python interpreter to use (e.g. a version of CPython, PyPy, RustPython, GraalPython)"
+		help="Path to the Python interpreter to use (e.g. a version of CPython, PyPy, RustPython, GraalPython)",
 		)
 @click.argument(
 		"dest",
 		type=click.STRING,
 		default="venv",
 		cls=DescribedArgument,
-		description="The directory to create the virtual environment in."
+		description="The directory to create the virtual environment in.",
 		)
 @click_command()
-def main(  # noqa: PRM002
+def main(
 		dest: PathLike = "venv",
 		verbose: int = 0,
 		colour: ColourTrilean = None,
 		show_traceback: bool = False,
 		upgrade: bool = False,
-		python: Optional[str] = None
+		python: Optional[str] = None,
 		) -> None:
 	"""
 	Create virtual environments using pyproject.toml metadata.

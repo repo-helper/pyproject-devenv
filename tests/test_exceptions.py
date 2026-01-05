@@ -34,7 +34,7 @@ def test_InstallError() -> None:
 				ComparableRequirement("pytest"),
 				ComparableRequirement("flake8"),
 				ComparableRequirement("black"),
-				ComparableRequirement("pip")
+				ComparableRequirement("pip"),
 				)
 
 	with pytest.raises(
