@@ -73,7 +73,7 @@ def test_no_requirements_txt(tmp_pathplus: PathPlus) -> None:
 						"but no 'requirements.txt' file was found.",
 						id="no_requirements_txt",
 						),
-				]
+				],
 		)
 def test_bad_config_cli(tmp_pathplus: PathPlus, config: Dict, match: str) -> None:
 	dom_toml.dump({"project": config}, tmp_pathplus / "pyproject.toml")
@@ -105,7 +105,7 @@ def test_bad_config_cli(tmp_pathplus: PathPlus, config: Dict, match: str) -> Non
 						"but no 'requirements.txt' file was found.",
 						id="no_requirements_txt",
 						),
-				]
+				],
 		)
 def test_bad_config_cli_traceback(tmp_pathplus: PathPlus, config: Dict, match: str) -> None:
 	dom_toml.dump({"project": config}, tmp_pathplus / "pyproject.toml")

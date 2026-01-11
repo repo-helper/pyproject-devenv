@@ -94,7 +94,7 @@ def test_mkdevenv(tmp_pathplus: PathPlus) -> None:
 				pytest.param(("-vv", ), id="very verbose short short"),
 				pytest.param(("--verbose", "--upgrade"), id="verbose upgrade"),
 				pytest.param(("-vU", ), id="verbose short upgrade short"),
-				]
+				],
 		)
 def test_mkdevenv_verbose(tmp_pathplus: PathPlus, extra_args: Tuple[str, ...]) -> None:
 	lib_requirements = [

@@ -237,7 +237,7 @@ def test_mkdevenv_no_lib_deps(tmp_pathplus: PathPlus, capsys) -> None:
 			'',
 			"[project]",
 			"name = 'pyproject-devenv-demo'",
-			f"dependencies = []",
+			"dependencies = []",
 			])
 
 	(tmp_pathplus / "tests").mkdir()
