@@ -103,7 +103,7 @@ pyproject-devenv
 	:alt: Maintenance
 
 .. |pypi-downloads| image:: https://img.shields.io/pypi/dm/pyproject-devenv
-	:target: https://pypi.org/project/pyproject-devenv/
+	:target: https://pypistats.org/packages/pyproject-devenv
 	:alt: PyPI - Downloads
 
 .. end shields
