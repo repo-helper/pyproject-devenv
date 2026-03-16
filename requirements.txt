@@ -1,9 +1,9 @@
 click>=7.1.2
 consolekit>=1.2.0
-dom-toml>=0.4.0
+dom-toml>=2.2.0
 domdf-python-tools>=2.9.0
 packaging>=20.9
-pyproject-parser>=0.2.0
+pyproject-parser>=0.14.0
 shippinglabel>=0.14.1
 typing-extensions>=3.7.4.3
 virtualenv<20.38,>=20.10.0
